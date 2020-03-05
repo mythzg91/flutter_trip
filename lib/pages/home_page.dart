@@ -5,6 +5,7 @@ import 'package:flutter_trip/model/common_model.dart';
 import 'package:flutter_trip/model/grid_nav_model.dart';
 import 'package:flutter_trip/model/home_model.dart';
 import 'package:flutter_trip/model/sales_box_model.dart';
+import 'package:flutter_trip/pages/search_page.dart';
 import 'package:flutter_trip/widget/grid_nav.dart';
 import 'package:flutter_trip/widget/loading_container.dart';
 import 'package:flutter_trip/widget/local_nav.dart';
@@ -22,11 +23,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List _imageUrls = [
-    'http://pages.ctrip.com/commerce/promote/20180718/yxzy/img/640sygd.jpg',
-    'https://dimg04.c-ctrip.com/images/700u0r000000gxvb93E54_810_235_85.jpg',
-    'https://dimg04.c-ctrip.com/images/700c10000000pdili7D8B_780_235_57.jpg'
-  ];
+//  List _imageUrls = [
+//    'http://pages.ctrip.com/commerce/promote/20180718/yxzy/img/640sygd.jpg',
+//    'https://dimg04.c-ctrip.com/images/700u0r000000gxvb93E54_810_235_85.jpg',
+//    'https://dimg04.c-ctrip.com/images/700c10000000pdili7D8B_780_235_57.jpg'
+//  ];
 
   double appBarAlpha = 0;
   List<CommonModel> localNavList = [];
@@ -208,14 +209,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   _jumpToSearch() {
-//    NavigatorUtil.push(
-//        context,
-//        SearchPage(
-//          hint: SEARCH_BAR_DEFAULT_TEXT,
-//        ));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchPage(
+          hint: SEARCH_BAR_DEFAULT_TEXT,
+        ),
+      ),
+    );
   }
 
   _jumpToSpeak() {
-//    NavigatorUtil.push(context, SpeakPage());
+//    Navigator.push(
+//        context, MaterialPageRoute(builder: (context) => SpeakPage()));
   }
 }

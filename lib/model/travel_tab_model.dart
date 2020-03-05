@@ -1,25 +1,47 @@
-// icon String Nullable
-// title String Nullable
-// url String Nullable
-// statusBarColor String Nullable
-// hideAppBar bool Nullable
-class CommonModel {
-  final String icon;
-  final String title;
-  final String url;
-  final String statusBarColor;
-  final bool hideAppBar;
+///旅拍类别模型
+class TravelTabModel {
+  Map params;
+  String url;
+  List<TravelTab> tabs;
 
-  CommonModel(
-      {this.title, this.url, this.statusBarColor, this.hideAppBar, this.icon});
+  TravelTabModel({this.url, this.tabs});
 
-  factory CommonModel.fromJson(Map<String, dynamic> json) {
-    return CommonModel(
-      icon: json['icon'],
-      title: json['title'],
-      url: json['url'],
-      statusBarColor: json['statusBarColor'],
-      hideAppBar: json['hideAppBar'],
-    );
+  TravelTabModel.fromJson(Map<String, dynamic> json) {
+    url = json['url'];
+    params = json['params'];
+    if (json['tabs'] != null) {
+      tabs = new List<TravelTab>();
+      json['tabs'].forEach((v) {
+        tabs.add(new TravelTab.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['url'] = this.url;
+    if (this.tabs != null) {
+      data['tabs'] = this.tabs.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class TravelTab {
+  String labelName;
+  String groupChannelCode;
+
+  TravelTab({this.labelName, this.groupChannelCode});
+
+  TravelTab.fromJson(Map<String, dynamic> json) {
+    labelName = json['labelName'];
+    groupChannelCode = json['groupChannelCode'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['labelName'] = this.labelName;
+    data['groupChannelCode'] = this.groupChannelCode;
+    return data;
   }
 }

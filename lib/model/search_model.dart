@@ -1,25 +1,45 @@
-// icon String Nullable
-// title String Nullable
-// url String Nullable
-// statusBarColor String Nullable
-// hideAppBar bool Nullable
-class CommonModel {
-  final String icon;
-  final String title;
+class SearchModel {
+  String keyword;
+  final List<SearchItem> data;
+
+  SearchModel({this.data});
+
+  factory SearchModel.fromJson(Map<String, dynamic> json) {
+    var dataJson = json['data'] as List;
+    List<SearchItem> data =
+        dataJson.map((i) => SearchItem.fromJson(i)).toList();
+    return SearchModel(data: data);
+  }
+}
+
+class SearchItem {
+  final String word; //xx酒店
+  final String type; //hotel
+  final String price; //实时计价
+  final String star; //豪华型
+  final String zonename; //虹桥
+  final String districtname; //上海
   final String url;
-  final String statusBarColor;
-  final bool hideAppBar;
 
-  CommonModel(
-      {this.title, this.url, this.statusBarColor, this.hideAppBar, this.icon});
+  SearchItem({
+    this.url,
+    this.word,
+    this.type,
+    this.price,
+    this.star,
+    this.zonename,
+    this.districtname,
+  });
 
-  factory CommonModel.fromJson(Map<String, dynamic> json) {
-    return CommonModel(
-      icon: json['icon'],
-      title: json['title'],
+  factory SearchItem.fromJson(Map<String, dynamic> json) {
+    return SearchItem(
+      word: json['word'],
+      type: json['type'],
+      price: json['price'],
+      star: json['star'],
+      zonename: json['zonename'],
+      districtname: json['districtname'],
       url: json['url'],
-      statusBarColor: json['statusBarColor'],
-      hideAppBar: json['hideAppBar'],
     );
   }
 }
